@@ -13,7 +13,6 @@ const SearchItem = ({ onSearch }: Props) => {
       style={{ width: "100%" }}
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(game);
         onSearch(game);
       }}
     >

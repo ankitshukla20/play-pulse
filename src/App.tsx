@@ -39,7 +39,6 @@ const App = () => {
       <GridItem area={"nav"}>
         <Navbar
           onSearch={(searchQuery) => {
-            console.log(searchQuery);
             setGameQuery((prevData) => {
               return { ...prevData, searchQuery };
             });
