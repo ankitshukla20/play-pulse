@@ -3,13 +3,15 @@ import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import noImage from "../assets/no-image-placeholder.webp";
+import { getCroppedImageUrl } from "../services/image-url";
 
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
-  const img = game.background_image || noImage;
+  const gameImage = getCroppedImageUrl(game.background_image);
+  const img = gameImage || noImage;
 
   return (
     <Card>
