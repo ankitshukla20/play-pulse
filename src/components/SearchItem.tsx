@@ -1,13 +1,11 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import useGameQueryStore from "../store";
 
-interface Props {
-  onSearch: (searchText: string) => void;
-}
-
-const SearchItem = ({ onSearch }: Props) => {
+const SearchItem = () => {
   const [game, setgame] = useState("");
+  const onSearch = useGameQueryStore((s) => s.setSearchText);
   return (
     <form
       style={{ width: "100%" }}

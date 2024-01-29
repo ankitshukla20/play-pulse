@@ -1,7 +1,7 @@
 import ms from "ms";
 import { useInfiniteQuery } from "react-query";
-import { GameQuery } from "../App";
 import apiClient from "../services/api-client";
+import useGameQueryStore from "../store";
 
 export interface Platform {
   id: number;
@@ -23,7 +23,9 @@ interface FetchGamesResponse {
   results: Game[];
 }
 
-const useGames = (gameQuery: GameQuery) => {
+const useGames = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
     useInfiniteQuery<FetchGamesResponse, Error>({
       queryKey: ["games", gameQuery],
