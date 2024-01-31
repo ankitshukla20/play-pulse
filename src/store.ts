@@ -1,12 +1,6 @@
 import { create } from "zustand";
-import { Platform } from "./hooks/useGames";
-
-interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  image_background: string;
-}
+import { Platform } from "./entities/Platform";
+import { Genre } from "./entities/Genre";
 
 interface GameQuery {
   genre?: Genre;

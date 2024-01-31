@@ -2,22 +2,7 @@ import ms from "ms";
 import { useInfiniteQuery } from "react-query";
 import apiClient from "../services/api-client";
 import useGameQueryStore from "../store";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-export interface Game {
-  id: number;
-  name: string;
-  slug: string;
-  description_raw: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-}
+import { Game } from "../entities/Game";
 
 interface FetchGamesResponse {
   count: number;
