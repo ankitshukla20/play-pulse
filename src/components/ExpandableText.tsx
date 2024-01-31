@@ -17,7 +17,7 @@ const ExpandableText = ({ children }: Props) => {
 
   const summary = expanded ? children : children.substring(0, limit) + "...";
   return (
-    <Box>
+    <Box marginY={5}>
       <Text dangerouslySetInnerHTML={{ __html: summary }} />
       {/* {summary} */}
 
