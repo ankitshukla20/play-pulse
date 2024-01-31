@@ -1,50 +1,19 @@
-import { Box, Grid, GridItem, Show, Stack } from "@chakra-ui/react";
-import GameGrid from "./components/GameGrid";
-import GameHeading from "./components/GameHeading";
-import GenreList from "./components/GenreList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./components/SortSelector";
+import HomePage from "./pages/HomePage";
+import GameDetailsPage from "./pages/GameDetailsPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`,
-      }}
-      templateColumns={{
-        base: "1fr",
-        lg: "260px 1fr",
-      }}
-    >
-      <GridItem area={"nav"}>
-        <Navbar />
-      </GridItem>
-
-      <Show above="lg">
-        <GridItem area={"aside"} paddingX={5}>
-          <GenreList />
-        </GridItem>
-      </Show>
-
-      <GridItem area={"main"}>
-        <Box paddingX={3}>
-          <GameHeading />
-          <Stack
-            direction={{ base: "column", sm: "row" }}
-            spacing={3}
-            marginBottom={5}
-            alignItems={{ base: "flex-start" }}
-          >
-            <PlatformSelector />
-            <SortSelector />
-          </Stack>
-        </Box>
-
-        <GameGrid />
-      </GridItem>
-    </Grid>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/games/:id" element={<GameDetailsPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
