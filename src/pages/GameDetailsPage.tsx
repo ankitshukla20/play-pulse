@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
+import GameTrailer from "../components/GameTrailer";
 
 const GameDetailsPage = () => {
   const { slug } = useParams();
@@ -12,15 +13,19 @@ const GameDetailsPage = () => {
   if (isLoading) return <Spinner />;
 
   // !game => if game type value is undefined => typescript error => to avoid optional chaining of game i.e game?.name
-  if (error || !game) throw error;
+  if (error) return <>{error.message}</>;
 
   return (
-    <Box padding={5}>
-      <Heading>{game.name}</Heading>
-      <ExpandableText>{game.description}</ExpandableText>
-
-      <GameAttributes game={game} />
-    </Box>
+    <>
+      {game ? (
+        <Box padding={5}>
+          <Heading>{game.name}</Heading>
+          <ExpandableText>{game.description}</ExpandableText>
+          <GameAttributes game={game} />
+          <GameTrailer gameId={game.id} />
+        </Box>
+      ) : null}
+    </>
   );
 };
 

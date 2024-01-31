@@ -3,7 +3,7 @@ import apiClient from "../services/api-client";
 import { Game } from "../entities/Game";
 
 const useGame = (slug: string) => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<Game, Error>({
     queryKey: ["game", slug],
     queryFn: () =>
       apiClient.get<Game>("/games/" + slug).then((res) => res.data),
