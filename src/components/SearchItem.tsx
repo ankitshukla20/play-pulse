@@ -2,16 +2,21 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import useGameQueryStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 const SearchItem = () => {
-  const [game, setgame] = useState("");
-  const onSearch = useGameQueryStore((s) => s.setSearchText);
+  const [game, setGame] = useState("");
+  const setSearchText = useGameQueryStore((s) => s.setSearchText);
+  const navigate = useNavigate();
+
   return (
     <form
       style={{ width: "100%" }}
       onSubmit={(e) => {
         e.preventDefault();
-        onSearch(game);
+        setSearchText(game);
+        navigate("/");
+        setGame("");
       }}
     >
       <InputGroup>
@@ -24,7 +29,7 @@ const SearchItem = () => {
           placeholder="Search game..."
           value={game}
           onChange={(e) => {
-            setgame(e.target.value);
+            setGame(e.target.value);
           }}
         />
       </InputGroup>
